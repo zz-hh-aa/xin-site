@@ -25,7 +25,6 @@ body {
 }
 
 .nav-item a {
-    color: #ffdbbc;  /* Pale orange */
     text-decoration: none;
     font-size: 1.1rem;
 }
@@ -35,7 +34,7 @@ body {
 }
 
 .list {
-    padding: 3rem;
+    padding: 2rem;
 }
 
 .list-section {
@@ -65,4 +64,17 @@ h1 {
 #quote {
     position: absolute;
     bottom: 0;
+}
+
+a {
+    color: #ffdbbc;
+}
+
+img {
+    max-width: 70%;
+    max-height: 60%;
+}
+
+.credit {
+    font-size: small;
 }
