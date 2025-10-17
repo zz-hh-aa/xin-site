@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xin.reluctant.promo/sitemap.xml
