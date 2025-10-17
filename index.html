@@ -5,7 +5,8 @@
         <script src="script.js" defer></script>
         <title>xin</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>">
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <main id="content-container">
@@ -20,6 +21,49 @@
                 nina [incoming] ✦ 
                 subvert [incoming]
                 </em>
+            </section>
+
+            <section id="subscribe">
+                <h2>newsletter</h2>
+                <!-- Newsletter subscribe form is loaded from subscribe.html to keep index.html tidy -->
+                <script>
+                    (function loadSubscribeFragment(){
+                        var container = document.getElementById('subscribe');
+                        if(!container) return;
+                        fetch('subscribe.html')
+                        .then(function(res){ if(!res.ok) throw new Error('Network response was not ok'); return res.text(); })
+                        .then(function(html){
+                            var temp = document.createElement('div');
+                            temp.innerHTML = html;
+
+                            // Move non-script nodes into the container
+                            var scripts = [];
+                            Array.from(temp.childNodes).forEach(function(node){
+                                if(node.tagName && node.tagName.toLowerCase() === 'script'){
+                                    scripts.push(node);
+                                } else {
+                                    container.appendChild(node);
+                                }
+                            });
+
+                            // Re-create scripts so they execute in document context (preserve order)
+                            scripts.forEach(function(s){
+                                var newScript = document.createElement('script');
+                                if(s.src){
+                                    newScript.src = s.src;
+                                    // keep same type if present
+                                    if(s.type) newScript.type = s.type;
+                                } else {
+                                    newScript.textContent = s.textContent || s.innerText || '';
+                                }
+                                document.body.appendChild(newScript);
+                            });
+                        })
+                        .catch(function(err){
+                            console.error('Failed to load subscribe fragment:', err);
+                        });
+                    })();
+                </script>
             </section>
 
             <!-- TABLE OF CONTENTS -->
